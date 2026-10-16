@@ -4,6 +4,7 @@ import { Minus, Plus } from "lucide-react";
 import { SectionTitle } from "@/components/orion";
 import { negocio, waLink } from "@/data/negocio";
 import { Footer } from "@/components/footer";
+import { reservationMessage } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/reservar")({
   head: () => ({
@@ -35,13 +36,7 @@ function Reservar() {
   const enviar = () => {
     if (!f.nome.trim() || !f.data || !f.hora) return setErr("Preencha nome, data e horário.");
     setErr("");
-    const data = f.data.split("-").reverse().join("/");
-    const msg = [
-      "*Pedido de reserva — Espetaria Orion*", "",
-      `Nome: ${f.nome}`, `Tipo: ${f.tipo}`, `Pessoas: ${f.pessoas}`, `Data: ${data}`, `Horário: ${f.hora}`, `Ocasião: ${f.ocasiao}`,
-      ...(f.obs ? [`Observações: ${f.obs}`] : []),
-    ].join("\n");
-    window.open(waLink(msg), "_blank");
+    window.open(waLink(reservationMessage(f)), "_blank", "noopener,noreferrer");
   };
 
   return (
