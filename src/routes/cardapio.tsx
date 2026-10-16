@@ -71,8 +71,8 @@ function Cardapio() {
       {!q && (
         <div className="mt-4 grid grid-cols-2 gap-2 px-4">
           {categoriasNavegacao.map((c) => (
-            <button key={c.id} onClick={() => go(c.id)} className="glass flex min-h-14 items-center gap-2 p-2 text-left text-sm font-semibold">
-              <Img src={c.img} alt="" className="aspect-square w-10 shrink-0 rounded-lg" />
+            <button key={c.id} onClick={() => go(c.id)} className="glass grid min-h-14 grid-cols-[32px_minmax(0,1fr)] items-center gap-2 p-2 text-left text-xs font-semibold min-[390px]:text-sm">
+              <Img src={c.img} alt="" className="aspect-square w-8 shrink-0 rounded-lg" />
               <span className="min-w-0">{c.nome}</span>
             </button>
           ))}
