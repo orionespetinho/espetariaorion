@@ -9,5 +9,5 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Render all Orion marks through the shared image-based Orion component using the approved uploaded asset, preserving geometry and orientation rather than maintaining separate drawings.
+- Render all Orion constellation drawings through one shared SVG component and geometry module, reusing that geometry for app icons to avoid inconsistent shapes.
 - Build order and reservation WhatsApp messages in shared browser-safe functions with tests for complete submitted details, so UI send actions use one consistent format.
