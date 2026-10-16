@@ -4,6 +4,7 @@ import { Home, UtensilsCrossed, CalendarDays, ShoppingBag, X, Minus, Plus } from
 import { useCart } from "@/lib/cart";
 import { negocio, brl, waLink } from "@/data/negocio";
 import { Orion } from "./orion";
+import { orderMessage } from "@/lib/whatsapp";
 
 export function Header() {
   const { count, setOpen } = useCart();
@@ -57,17 +58,7 @@ export function CartSheet() {
     if (!f.nome.trim()) return setErr("Informe seu nome.");
     if (f.tipo === "Entrega" && (!f.endereco.trim() || !f.bairro.trim())) return setErr("Informe endereço e bairro.");
     setErr("");
-    const itens = lines.map((l) => `${l.qtd}x ${l.nome} — ${brl(l.qtd * l.preco)}${l.obs ? ` (obs: ${l.obs})` : ""}`).join("\n");
-    const ent = f.tipo !== "Entrega" ? "—" : taxa == null ? "a combinar" : brl(taxa);
-    const msg = [
-      "*Novo pedido — Espetaria Orion*", "", itens, "",
-      `Subtotal: ${brl(subtotal)}`, `Entrega: ${ent}`, `Total: ${brl(total)}${f.tipo === "Entrega" && taxa == null ? " + entrega" : ""}`, "",
-      `Cliente: ${f.nome}`, `Tipo: ${f.tipo}`,
-      ...(f.tipo === "Entrega" ? [`Endereço: ${f.endereco}, ${f.bairro}${f.ref ? ` (ref.: ${f.ref})` : ""}`] : []),
-      `Pagamento: ${f.pag}${f.pag === "Dinheiro" && f.troco ? ` (troco para ${f.troco})` : ""}`,
-      ...(f.obs ? [`Observações: ${f.obs}`] : []),
-    ].join("\n");
-    window.open(waLink(msg), "_blank");
+    window.open(waLink(orderMessage(lines, f, negocio.taxaEntrega)), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -79,7 +70,7 @@ export function CartSheet() {
           <button className="icon-btn" aria-label="Fechar" onClick={() => setOpen(false)}><X /></button>
         </div>
         <div className="no-scrollbar flex-1 space-y-4 overflow-y-auto px-5 pb-4">
-          {!lines.length && <p className="py-10 text-center text-muted-foreground">Seu pedido está vazio. Escolha seus espetos no cardápio.</p>}
+          {!lines.length && <p className="empty-order-subtitle py-10 text-center text-muted-foreground"><span className="block whitespace-nowrap">Seu pedido está vazio.</span><span className="block whitespace-nowrap">Escolha seus espetos no cardápio.</span></p>}
           {lines.map((l) => (
             <div key={l.key} className="glass flex items-center gap-3 p-3">
               <div className="min-w-0 flex-1">

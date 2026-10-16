@@ -4,6 +4,7 @@ import { Minus, Plus } from "lucide-react";
 import { SectionTitle } from "@/components/orion";
 import { negocio, waLink } from "@/data/negocio";
 import { Footer } from "@/components/footer";
+import { reservationMessage } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/reservar")({
   head: () => ({
@@ -35,18 +36,12 @@ function Reservar() {
   const enviar = () => {
     if (!f.nome.trim() || !f.data || !f.hora) return setErr("Preencha nome, data e horário.");
     setErr("");
-    const data = f.data.split("-").reverse().join("/");
-    const msg = [
-      "*Pedido de reserva — Espetaria Orion*", "",
-      `Nome: ${f.nome}`, `Tipo: ${f.tipo}`, `Pessoas: ${f.pessoas}`, `Data: ${data}`, `Horário: ${f.hora}`, `Ocasião: ${f.ocasiao}`,
-      ...(f.obs ? [`Observações: ${f.obs}`] : []),
-    ].join("\n");
-    window.open(waLink(msg), "_blank");
+    window.open(waLink(reservationMessage(f)), "_blank", "noopener,noreferrer");
   };
 
   return (
     <div className="pt-6">
-      <SectionTitle label="Reservas e eventos" title="Reserve sua noite" sub="Aniversário, resenha ou evento? Reserve sua mesa ou o espaço privativo." />
+      <SectionTitle label="Reservas e eventos" title="Reserve sua noite" sub={<span className="reservation-subtitle"><span className="block whitespace-nowrap">Aniversário, resenha ou evento?</span><span className="block whitespace-nowrap">Reserve sua mesa ou o espaço privativo.</span></span>} />
       <div className="glass mx-4 space-y-5 p-5">
         <label className="block text-sm">Nome *<input className="field mt-1" value={f.nome} onChange={(e) => setF({ ...f, nome: e.target.value })} /></label>
         <div>

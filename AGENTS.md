@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Render all Orion marks through the shared image-based Orion component using the approved uploaded asset, preserving geometry and orientation rather than maintaining separate drawings.
+- Build order and reservation WhatsApp messages in shared browser-safe functions with tests for complete submitted details, so UI send actions use one consistent format.
