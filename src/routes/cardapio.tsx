@@ -15,6 +15,8 @@ export const Route = createFileRoute("/cardapio")({
       { name: "description", content: "Cardápio digital da Espetaria Orion: espetos na brasa, acompanhamentos, porções e bebidas. Peça pelo WhatsApp." },
       { property: "og:title", content: "Cardápio — Espetaria Orion" },
       { property: "og:description", content: "Espetos na brasa, porções e bebidas geladas. Peça pelo WhatsApp." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Cardapio,

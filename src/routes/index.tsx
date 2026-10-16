@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import * as Icons from "lucide-react";
 import { Music, Umbrella, PartyPopper, Wifi, Flame, Star, MapPin, MessageCircle, Clock, CreditCard, Sparkles } from "lucide-react";
 import hero from "@/assets/hero-brasa.jpg";
-import ambiente from "@/assets/ambiente-mesas.jpg";
+import ambiente from "@/assets/espaco-orion-editado.jpg";
 import { Orion, Divider, SectionTitle } from "@/components/orion";
 import { Img } from "@/components/menu";
 import { categorias, combos } from "@/data/cardapio";
@@ -17,6 +17,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Espetos na brasa, bebida gelada e música ao vivo. Cardápio digital, pedidos e reservas pelo WhatsApp em Uberlândia." },
       { property: "og:title", content: "Espetaria Orion — O sabor da brasa" },
       { property: "og:description", content: "Jantar sob as estrelas em Uberlândia/MG: espetos, música ao vivo e espaço para eventos." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -131,7 +133,7 @@ function Home() {
       <section>
         <SectionTitle label="Nosso espaço" title="Um lugar para todos" />
         <div className="px-4">
-          <Img src={ambiente} alt="Mesas sob cobertura à noite com luzes quentes ao lado da quadra" className="aspect-video w-full rounded-2xl border border-gold/30" />
+          <Img src={ambiente} alt="Carrinho da Espetaria Orion sob o guarda-sol, ao lado do balcão e da quadra esportiva" className="aspect-video w-full rounded-2xl border border-gold/30" />
           <ul className="mt-4 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2">
             {negocio.diferenciais.map((d) => (
               <li key={d} className="flex items-start gap-2 text-sm"><Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-gold" />{d}</li>
@@ -157,6 +159,11 @@ function Home() {
         <div className="glass space-y-4 p-5 text-sm">
           <p className="flex gap-2"><MapPin className="h-5 w-5 shrink-0 text-gold" />{negocio.endereco}</p>
           <p className="flex gap-2"><Clock className="h-5 w-5 shrink-0 text-gold" />{temHorario ? "Veja os horários abaixo" : "Jantar · consulte os horários"}</p>
+          {temHorario && <dl className="space-y-2 border-l border-gold/20 pl-7">
+            {([["segunda", "Segunda-feira"], ["terca", "Terça-feira"], ["quarta", "Quarta-feira"], ["quinta", "Quinta-feira"], ["sexta", "Sexta-feira"], ["sabado", "Sábado"], ["domingo", "Domingo"]] as const).map(([dia, label]) => (
+              <div key={dia} className="flex justify-between gap-3"><dt>{label}</dt><dd className="shrink-0 text-gold-3">{negocio.horarios[dia]}</dd></div>
+            ))}
+          </dl>}
           <p className="flex gap-2"><CreditCard className="h-5 w-5 shrink-0 text-gold" />{negocio.pagamentos.join(" · ")}</p>
           <div className="grid gap-2">
             <a href={negocio.mapsUrl} target="_blank" rel="noreferrer" className="btn-gold">Como chegar</a>

@@ -13,6 +13,8 @@ export const Route = createFileRoute("/reservar")({
       { name: "description", content: "Reserve sua mesa ou o espaço privativo da Espetaria Orion para aniversários, resenhas e confraternizações." },
       { property: "og:title", content: "Reservas e eventos — Espetaria Orion" },
       { property: "og:description", content: "Reserve sua mesa ou o espaço privativo pelo WhatsApp." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Reservar,

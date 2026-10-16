@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Orion } from "./orion";
 import { negocio } from "@/data/negocio";
+import { Instagram } from "lucide-react";
 
 export function Footer() {
   return (
@@ -10,7 +11,7 @@ export function Footer() {
       <p className="font-serif-it text-gold-2">O sabor da brasa</p>
       <p className="mt-4"><a href={negocio.tel} className="underline-offset-4 hover:underline">{negocio.telefoneExibicao}</a></p>
       <p>{negocio.endereco}</p>
-      {negocio.instagram && <p><a href={negocio.instagram}>Instagram</a></p>}
+      {negocio.instagram && <a href={negocio.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram da Espetaria Orion" title="Instagram" className="icon-btn mx-auto mt-3"><Instagram className="h-5 w-5" /></a>}
       <p className="mt-4"><Link to="/plaquinha" className="underline">Plaquinha com QR Code</Link></p>
       <p className="mt-6 text-xs">Site por NeuroDyne</p>
     </footer>
