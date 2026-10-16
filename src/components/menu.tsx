@@ -15,7 +15,7 @@ export function Img({ src, alt, className = "" }: { src?: string; alt: string; c
       </div>
     );
   return (
-    <div className={`relative overflow-hidden ${loaded ? "" : "animate-pulse bg-sky-2"} ${className}`}>
+    <div className={`relative overflow-hidden ${loaded ? "" : "bg-sky-2"} ${className}`}>
       <img src={src} alt={alt} loading="lazy" onLoad={() => setLoaded(true)} onError={() => setOk(false)}
         className="h-full w-full object-cover" />
     </div>
