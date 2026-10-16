@@ -198,3 +198,6 @@ body::after { background-size: 100% 100%; animation-duration: 9s; }
   html { scroll-behavior: auto !important; }
 }
 html { scroll-behavior: smooth; }
+#lovable-badge { 
+  display: none !important; 
+}
