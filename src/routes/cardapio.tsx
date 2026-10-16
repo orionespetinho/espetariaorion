@@ -6,6 +6,8 @@ import { ItemCard, ItemModal, Img } from "@/components/menu";
 import { SectionTitle } from "@/components/orion";
 import { Footer } from "@/components/footer";
 
+const categoriasNavegacao = categorias.filter((c) => c.id !== "acompanhamentos");
+
 export const Route = createFileRoute("/cardapio")({
   head: () => ({
     meta: [
@@ -68,7 +70,7 @@ function Cardapio() {
 
       {!q && (
         <div className="mt-4 grid grid-cols-2 gap-2 px-4">
-          {categorias.map((c) => (
+          {categoriasNavegacao.map((c) => (
             <button key={c.id} onClick={() => go(c.id)} className="glass flex min-h-14 items-center gap-2 p-2 text-left text-sm font-semibold">
               <Img src={c.img} alt="" className="aspect-square w-10 shrink-0 rounded-lg" />
               <span className="min-w-0">{c.nome}</span>
@@ -97,7 +99,7 @@ function Cardapio() {
               <button className="icon-btn" aria-label="Fechar" onClick={() => setSheet(false)}><X /></button>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {categorias.map((c) => <button key={c.id} onClick={() => go(c.id)} className="chip">{c.nome}</button>)}
+              {categoriasNavegacao.map((c) => <button key={c.id} onClick={() => go(c.id)} className="chip">{c.nome}</button>)}
             </div>
           </div>
         </div>

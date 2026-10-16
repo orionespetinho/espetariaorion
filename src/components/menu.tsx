@@ -26,8 +26,8 @@ export function PriceAction({ item, onAdd }: { item: Item; onAdd: () => void }) 
   if (item.preco == null)
     return (
       <a href={waLink(`Olá! Qual o preço de: ${item.nome}?`)} target="_blank" rel="noreferrer"
-        onClick={(e) => e.stopPropagation()} className="btn-outline mt-2 w-full text-sm">
-        <MessageCircle className="h-4 w-4" /> Perguntar no WhatsApp
+        onClick={(e) => e.stopPropagation()} className="btn-outline mt-2 w-full whitespace-nowrap text-sm">
+        <MessageCircle className="h-4 w-4 shrink-0" /> Perguntar no WhatsApp
       </a>
     );
   return (
@@ -39,7 +39,7 @@ export function PriceAction({ item, onAdd }: { item: Item; onAdd: () => void }) 
 
 export function ItemCard({ item, onOpen }: { item: Item; onOpen: (i: Item) => void }) {
   return (
-    <article onClick={() => onOpen(item)} className="glass flex cursor-pointer gap-3 p-3">
+    <article onClick={() => onOpen(item)} className="glass grid cursor-pointer grid-cols-[96px_minmax(0,1fr)] gap-x-3 p-3">
       <Img src={item.img} alt={item.nome} className="aspect-square w-24 shrink-0 rounded-xl" />
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-1">
@@ -48,8 +48,8 @@ export function ItemCard({ item, onOpen }: { item: Item; onOpen: (i: Item) => vo
         <h3 className="font-display text-base font-semibold text-cream">{item.nome}</h3>
         <p className="line-clamp-2 text-xs text-muted-foreground">{item.descricao}</p>
         <p className="mt-1 text-sm font-semibold text-gold">{item.preco == null ? "Consulte" : brl(item.preco)}</p>
-        <PriceAction item={item} onAdd={() => onOpen(item)} />
       </div>
+      <div className="col-span-2"><PriceAction item={item} onAdd={() => onOpen(item)} /></div>
     </article>
   );
 }
@@ -91,7 +91,8 @@ export function ItemModal({ item, onClose }: { item: Item | null; onClose: () =>
             <PriceAction item={item} onAdd={() => {}} />
           ) : (
             <button className="btn-gold w-full" onClick={() => {
-              add({ id: item.id, nome: item.nome, preco: item.preco!, qtd, obs });
+              if (item.preco == null) return;
+              add({ id: item.id, nome: item.nome, preco: item.preco, qtd, obs });
               setQtd(1); setObs(""); onClose(); setOpen(true);
             }}>Adicionar · {brl(item.preco * qtd)}</button>
           )}

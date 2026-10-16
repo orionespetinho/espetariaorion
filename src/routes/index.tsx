@@ -35,8 +35,9 @@ function Home() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  const espetos = categorias.filter((c) => ["bovina", "medalhao", "almondegas", "coracao", "linguica"].includes(c.id));
-  const destaque = categorias[0]!.itens[0]!;
+  const espetos = categorias.filter((c) => ["destaque", "bovina", "medalhao", "almondegas", "coracao", "linguica"].includes(c.id));
+  const destaque = categorias[0]?.itens[0];
+  if (!destaque) return null;
   const astros = [destaque, ...categorias.slice(1, 4).map((c) => c.itens[0])].filter((x): x is NonNullable<typeof x> => !!x);
   const extras = categorias.filter((c) => ["acompanhamentos", "porcoes", "bebidas"].includes(c.id));
   const selos = [[Music, "Música ao vivo"], [Umbrella, "Mesas na cobertura"], [PartyPopper, "Espaço para eventos"], [Wifi, "Wi-Fi grátis"]] as const;
@@ -58,7 +59,7 @@ function Home() {
             <span className="shimmer block text-6xl tracking-[0.12em]">ORION</span>
           </h1>
           <p className="mt-3 flex items-center justify-center gap-2 font-serif-it text-lg text-gold-2"><Flame className="h-4 w-4 text-ember" />O sabor da brasa</p>
-          <p className="mx-auto mt-4 max-w-xs text-cream/90">Espetos na brasa, bebida gelada e música ao vivo, para jantar em família e com amigos.</p>
+          <p className="hero-subtitle mx-auto mt-4 text-cream/90"><span className="block whitespace-nowrap">Espetos na brasa, bebida gelada e música ao vivo,</span><span className="block whitespace-nowrap">para jantar em família e com amigos.</span></p>
           <div className="mt-6 grid gap-3">
             <Link to="/cardapio" className="btn-gold">Ver cardápio</Link>
             <Link to="/reservar" className="btn-outline">Reservar mesa</Link>
@@ -81,14 +82,6 @@ function Home() {
               <p className="flex min-h-11 items-center justify-center gap-1 px-2 py-2 text-center text-sm font-semibold"><Icon name={c.icone} className="h-4 w-4 shrink-0 text-gold" />{c.nome}</p>
             </Link>
           ))}
-          <Link to="/cardapio" hash="destaque" className="glass relative col-span-2 overflow-hidden">
-            <Img src={destaque.img} alt={destaque.nome} className="aspect-[16/9] w-full" />
-            <div className="absolute inset-0 bg-gradient-to-t from-sky-0 via-sky-0/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-4 text-center">
-              <span className="badge-ember"><Flame className="h-3 w-3" />Destaque</span>
-              <p className="text-gold-grad mt-1 font-display text-xl font-bold">Frango com Bacon</p>
-            </div>
-          </Link>
         </div>
       </section>
 
@@ -129,7 +122,7 @@ function Home() {
           <Orion className="pointer-events-none absolute -right-6 -top-4 h-48 opacity-40" animate={false} id="r" />
           <p className="font-serif-it text-lg text-gold">Reservas e eventos</p>
           <h2 className="text-gold-grad font-display text-2xl font-bold">Sua noite sob as estrelas</h2>
-          <p className="mx-auto mt-2 max-w-xs text-sm text-muted-foreground">Aniversário, resenha ou evento? Reserve sua mesa ou o espaço privativo.</p>
+          <p className="reservation-subtitle mt-2 text-muted-foreground"><span className="block whitespace-nowrap">Aniversário, resenha ou evento?</span><span className="block whitespace-nowrap">Reserve sua mesa ou o espaço privativo.</span></p>
           <Link to="/reservar" className="btn-gold mt-5 w-full">Reservar agora</Link>
         </div>
       </section>
@@ -154,7 +147,7 @@ function Home() {
           <p className="text-gold-grad font-display text-5xl font-bold">5,0</p>
           <div className="mt-1 flex justify-center gap-1 text-gold" aria-label="5 de 5 estrelas">{[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}</div>
           <p className="mt-2 text-sm text-muted-foreground">{negocio.avaliacao.total} avaliações no Google</p>
-          <a href={negocio.googleUrl} target="_blank" rel="noreferrer" className="btn-outline mt-4 w-full">Ver avaliações no Google</a>
+          <a href={negocio.googleUrl} target="_blank" rel="noreferrer" className="btn-outline mt-4 w-full">Avaliar no Google</a>
         </div>
       </section>
 

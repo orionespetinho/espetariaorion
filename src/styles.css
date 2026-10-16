@@ -61,6 +61,8 @@
   --border: rgba(229, 193, 88, 0.28);
   --grad-gold: linear-gradient(180deg, #f2d98b, #d4af37 55%, #b8902b);
   --glow: 0 0 24px -6px rgba(229, 193, 88, 0.35);
+  --star-light: #fff;
+  --action-glow: 0 0 16px -8px rgba(229, 193, 88, 0.25);
 }
 
 @layer base {
@@ -109,6 +111,20 @@
 .orion-star { animation: pulse-star 3.5s ease-in-out infinite; }
 .sheet-in { animation: sheet 0.35s ease-out; }
 .fade-up { animation: fade-up 0.5s ease-out both; }
+.orion-image { object-fit: contain; width: auto; max-width: 100%; mix-blend-mode: screen; }
+.hero-subtitle { font-size: 11px; line-height: 1.65; }
+.reservation-subtitle { font-size: 12px; line-height: 1.7; }
+.empty-order-subtitle { font-size: 14px; line-height: 1.7; }
+@media (min-width: 360px) { .hero-subtitle { font-size: 12px; } .reservation-subtitle { font-size: 13px; } }
+@media (min-width: 390px) { .hero-subtitle { font-size: 13px; } .reservation-subtitle { font-size: 14px; } }
+@media (min-width: 430px) { .hero-subtitle { font-size: 14px; } }
+@keyframes breathe-action { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.07); } }
+.btn-gold, .btn-outline { animation: breathe-action 4.8s ease-in-out infinite; }
+.btn-outline { animation-delay: -2.4s; }
+.btn-gold:disabled { animation: none; }
+.glass { transition: border-color 250ms ease, box-shadow 250ms ease; }
+.glass:is(a, button, article):hover { border-color: var(--gold-2); }
+body::after { background-size: 100% 100%; animation-duration: 9s; }
 
 @utility text-gold-grad {
   background: var(--grad-gold);

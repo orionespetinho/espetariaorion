@@ -46,7 +46,7 @@ function Reservar() {
 
   return (
     <div className="pt-6">
-      <SectionTitle label="Reservas e eventos" title="Reserve sua noite" sub="Aniversário, resenha ou evento? Reserve sua mesa ou o espaço privativo." />
+      <SectionTitle label="Reservas e eventos" title="Reserve sua noite" sub={<span className="reservation-subtitle"><span className="block whitespace-nowrap">Aniversário, resenha ou evento?</span><span className="block whitespace-nowrap">Reserve sua mesa ou o espaço privativo.</span></span>} />
       <div className="glass mx-4 space-y-5 p-5">
         <label className="block text-sm">Nome *<input className="field mt-1" value={f.nome} onChange={(e) => setF({ ...f, nome: e.target.value })} /></label>
         <div>

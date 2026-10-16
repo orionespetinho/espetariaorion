@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Render all Orion marks through the shared image-based Orion component using the approved uploaded asset, preserving geometry and orientation rather than maintaining separate drawings.

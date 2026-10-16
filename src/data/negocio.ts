@@ -28,7 +28,6 @@ export const negocio = {
     "Música ao vivo", "Ambiente esportivo", "Mesas na cobertura e externas",
     "Espaço privativo para eventos", "Aceita reservas", "Família e crianças (fraldário)",
     "Wi-Fi gratuito", "Bar no local", "Estacionamento gratuito", "Acessibilidade completa",
-    "Todos são bem-vindos",
   ],
 };
 
