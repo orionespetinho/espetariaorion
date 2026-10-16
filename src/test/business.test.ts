@@ -9,7 +9,7 @@ describe("Owner-confirmed business details", () => {
     expect(negocio.horarios[dia]).toBe("16:00–23:00");
   });
   it("opens Saturday from 15:00 to 23:00", () => {
-    expect(negocio.horarios.sabado).toBe("15:00–23:00");
+    expect(negocio.horarios["sabado"]).toBe("15:00–23:00");
   });
   it.each(["domingo", "segunda"])("is closed on %s", (dia) => {
     expect(negocio.horarios[dia]).toBe("Fechado");
