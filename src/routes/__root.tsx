@@ -8,7 +8,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "@/lib/cart";
 import { Header, BottomNav, CartSheet } from "@/components/shell";
-import icon from "@/assets/orion-icon.jpg.asset.json";
+import { negocio } from "@/data/negocio";
 
 function NotFoundComponent() {
   return (
@@ -43,10 +43,15 @@ const jsonLd = {
   slogan: "O sabor da brasa",
   servesCuisine: ["Espetos", "Churrasco"],
   telephone: "+55 34 99148-9663",
-  address: { "@type": "PostalAddress", streetAddress: "Av. Araguari", addressLocality: "Uberlândia", addressRegion: "MG", addressCountry: "BR" },
+  address: { "@type": "PostalAddress", streetAddress: "Avenida Araguari 225", addressLocality: "Uberlândia", addressRegion: "MG", addressCountry: "BR" },
   geo: { "@type": "GeoCoordinates", latitude: -18.9077595, longitude: -48.2776748 },
   acceptsReservations: true,
-  paymentAccepted: "Cartão de crédito, Cartão de débito, NFC",
+  paymentAccepted: negocio.pagamentos.join(", "),
+  sameAs: [negocio.instagram],
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"], opens: "16:00", closes: "23:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "15:00", closes: "23:00" },
+  ],
 };
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -64,7 +69,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico" },
-      { rel: "apple-touch-icon", href: icon.url },
+      { rel: "apple-touch-icon", href: "/orion-icon-192.png" },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
