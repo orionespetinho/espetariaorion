@@ -8,9 +8,15 @@
   "theme_color": "#070D1F",
   "icons": [
     {
-      "src": "/__l5e/assets-v1/d02662d6-eaeb-42e1-b8da-398b67e3b623/orion-icon.jpg",
-      "sizes": "440x605",
-      "type": "image/jpeg",
+      "src": "/orion-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/orion-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

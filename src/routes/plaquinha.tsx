@@ -9,6 +9,8 @@ export const Route = createFileRoute("/plaquinha")({
       { name: "description", content: "Plaquinha para imprimir com QR Code do cardápio da Espetaria Orion." },
       { property: "og:title", content: "Plaquinha — Espetaria Orion" },
       { property: "og:description", content: "Escaneie e veja o cardápio." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
   }),

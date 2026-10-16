@@ -1,10 +1,24 @@
 import type { ReactNode } from "react";
-import orion from "@/assets/constelacao-orion.jpg.asset.json";
+import { orionEdges, orionStars } from "@/lib/orion-geometry";
 
 export function Orion({ className = "", animate = true, id = "o" }: { className?: string; animate?: boolean; id?: string }) {
   return (
-    <img src={orion.url} alt="" aria-hidden="true" data-orion={id} width={440} height={605}
-      className={`orion-image ${animate ? "orion-star" : ""} ${className}`} />
+    <svg viewBox="0 0 440 605" width={440} height={605} aria-hidden="true" data-orion={id}
+      className={`orion-drawing ${animate ? "orion-animated" : ""} ${className}`}>
+      <g className="orion-connections" fill="none" strokeWidth="1.2" strokeLinecap="round">
+        {orionEdges.map(([a, b]) => {
+          const start = orionStars[a]; const end = orionStars[b];
+          return <line key={`${a}-${b}`} x1={start.x} y1={start.y} x2={end.x} y2={end.y} pathLength={1} />;
+        })}
+      </g>
+      {orionStars.map((star, index) => (
+        <g key={index} className="orion-point">
+          <circle className="orion-halo" cx={star.x} cy={star.y} r={star.r * 3} />
+          <circle cx={star.x} cy={star.y} r={star.r} />
+          <path className="orion-rays" d={`M${star.x - star.r * 4},${star.y}h${star.r * 8} M${star.x},${star.y - star.r * 4}v${star.r * 8}`} fill="none" strokeWidth="0.7" />
+        </g>
+      ))}
+    </svg>
   );
 }
 
