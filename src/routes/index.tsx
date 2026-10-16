@@ -36,8 +36,8 @@ function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const espetos = categorias.filter((c) => ["bovina", "medalhao", "almondegas", "coracao", "linguica"].includes(c.id));
-  const destaque = categorias[0].itens[0];
-  const astros = [destaque, ...categorias.slice(1, 4).map((c) => c.itens[0])];
+  const destaque = categorias[0]!.itens[0]!;
+  const astros = [destaque, ...categorias.slice(1, 4).map((c) => c.itens[0])].filter((x): x is NonNullable<typeof x> => !!x);
   const extras = categorias.filter((c) => ["acompanhamentos", "porcoes", "bebidas"].includes(c.id));
   const selos = [[Music, "Música ao vivo"], [Umbrella, "Mesas na cobertura"], [PartyPopper, "Espaço para eventos"], [Wifi, "Wi-Fi grátis"]] as const;
   const temHorario = Object.values(negocio.horarios).some(Boolean);

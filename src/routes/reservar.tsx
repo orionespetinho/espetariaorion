@@ -26,8 +26,8 @@ function Reservar() {
   // CONFIRMAR COM O DONO: horários disponíveis
   const horas = useMemo(() => {
     const out: string[] = [];
-    const [h0, m0] = negocio.reservaInicio.split(":").map(Number);
-    const [h1, m1] = negocio.reservaFim.split(":").map(Number);
+    const [h0 = 18, m0 = 0] = negocio.reservaInicio.split(":").map(Number);
+    const [h1 = 23, m1 = 0] = negocio.reservaFim.split(":").map(Number);
     for (let t = h0 * 60 + m0; t <= h1 * 60 + m1; t += 30) out.push(`${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`);
     return out;
   }, []);
